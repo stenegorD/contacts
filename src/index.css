@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  font-family: Poppins, sans-serif;
+}
+
+#root {
+  max-width: 1280px;
+  min-width: 400px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.field {
+  @apply flex flex-col
+}
+
+.label {
+  @apply text-xs font-normal pb-2
+}
+
+.input {
+  @apply p-2 rounded-md border border-gray-300 border-solid hover:border-gray-500 focus:border-purple-500 duration-500 ease-linear outline-none shadow-none text-sm
+}
+
+.error {
+  @apply text-xs h-4 text-red-600
+}
+
+.svg-icon {
+  transition: fill 0.3s ease;
+}
+
+.button:hover .svg-icon {
+  fill: #EC4747;
+}
