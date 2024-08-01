@@ -14,12 +14,6 @@
   min-width: 400px;
 }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .field {
   @apply flex flex-col
 }
@@ -36,10 +30,18 @@ body {
   @apply text-xs h-4 text-red-600
 }
 
+.submit-button {
+  @apply font-medium p-2 border border-gray-300 border-solid rounded hover:border-indigo-300 hover:text-indigo-500 duration-500 ease-linear disabled:border-gray-400 disabled:text-gray-400
+}
+
 .svg-icon {
   transition: fill 0.3s ease;
 }
 
 .button:hover .svg-icon {
   fill: #EC4747;
+}
+
+.button:disabled .svg-icon {
+  fill: gray;
 }

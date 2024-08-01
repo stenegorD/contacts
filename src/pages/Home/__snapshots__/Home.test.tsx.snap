@@ -1,0 +1,103 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Home > should render Home component correctly 1`] = `
+<div>
+  <div
+    class="flex justify-center gap-8 m-10 flex-col md:flex-row"
+  >
+    <div
+      class="flex flex-col gap-2 w-full h-full sticky top-[40px] bottom md:w-contact-form"
+    >
+      <h2
+        class="text-xl"
+      >
+        Create Contact
+      </h2>
+      <form
+        autocomplete="off"
+        class="flex flex-col gap-2"
+        novalidate=""
+      >
+        <div
+          class="field"
+        >
+          <label
+            class="label"
+            for="firstName"
+          >
+            Name
+          </label>
+          <input
+            class="input"
+            id="firstName"
+            name="firstName"
+            placeholder="Name"
+          />
+          <p
+            class="error"
+          />
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            class="label"
+            for="lastName"
+          >
+            Surname
+          </label>
+          <input
+            class="input"
+            id="lastName"
+            name="lastName"
+            placeholder="Surname"
+          />
+          <p
+            class="error"
+          />
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            class="label"
+            for="email"
+          >
+            Email
+          </label>
+          <input
+            class="input"
+            id="email"
+            name="email"
+            placeholder="Email"
+            type="email"
+          />
+          <p
+            class="error"
+          />
+        </div>
+        <button
+          class="submit-button"
+          type="submit"
+        >
+          Add contact
+        </button>
+      </form>
+    </div>
+    <div
+      class="flex flex-col gap-2"
+    >
+      <h2
+        class="text-xl"
+      >
+        ContactList
+      </h2>
+      <div
+        class="w-full md:w-contact-list"
+      >
+        Loading...
+      </div>
+    </div>
+  </div>
+</div>
+`;

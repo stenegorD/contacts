@@ -30,14 +30,14 @@ export function Contact() {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <div className="text-center">Loading...</div>
     }
 
     return (
-        <div className="w-contact flex flex-col gap-6 p-10">
+        <div className="w-contact flex flex-col gap-6 m-10">
             <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
-                    <img className="w-full h-full object-cover" src={contact?.avatar_url} />
+                    <img className="w-full h-full object-cover object-center" src={contact?.avatar_url} />
                 </div>
                 <div className="flex flex-col flex-grow">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -61,7 +61,7 @@ export function Contact() {
                     />
                     <p className='error'>{errors.tags?.message}</p>
                 </div>
-                <button className='text-md font-medium p-2 border border-gray-300 border-solid rounded hover:border-indigo-300 hover:text-indigo-500 duration-500 ease-linear' type="submit" disabled={isLoadingAddTags}>Add Tag</button>
+                <button className='submit-button' type="submit" disabled={isLoadingAddTags}>Add Tag</button>
             </form>
         </div>
     )

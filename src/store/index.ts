@@ -3,10 +3,8 @@ import { contactsApi } from "./reducers/contacts/api";
 
 
 const rootReducer = combineReducers({
-    // contacts: contactsSlice.reducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
 });
-
 
 
 export const store = configureStore({
