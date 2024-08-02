@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
+      cors: false,
       proxy: {
         '/api': {
           target: env.VITE_APP_CONTACTS_URL,
