@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = import.meta.env.VITE_APP_CONTACTS_URL;
+const baseUrl = import.meta.env.VITE_APP_CONTACTS_URL_WITH_CORS;
 const token = import.meta.env.VITE_TOKEN;
 
 export const contactsApi = createApi({
