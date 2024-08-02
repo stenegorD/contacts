@@ -37,6 +37,7 @@ describe('Card', () => {
             ['email']: [{ value: 'test@example.com' }],
         },
         tags: [{ tag: "tag" }],
+        tags2: []
     };
 
     it('should render contact information correctly', () => {

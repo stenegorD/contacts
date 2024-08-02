@@ -35,8 +35,8 @@ describe('List', () => {
 
     it('should render contact list when data is loaded', async () => {
         const contacts = [
-            { id: '1', avatar_url: 'https://via.placeholder.com/150', fields: { ['first name']: [{ value: 'Cat' }], ['last name']: [{ value: 'Kitty' }], ['email']: [{ value: 'cat@example.com' }] }, tags: [{ tag: 'cat' }] },
-            { id: '2', avatar_url: 'https://via.placeholder.com/150', fields: { ['first name']: [{ value: 'Dog' }], ['last name']: [{ value: 'Bobby' }], ['email']: [{ value: 'dog@example.com' }] }, tags: [{ tag: 'dog' }] },
+            { id: '1', avatar_url: 'https://via.placeholder.com/150', fields: { ['first name']: [{ value: 'Cat' }], ['last name']: [{ value: 'Kitty' }], ['email']: [{ value: 'cat@example.com' }] }, tags: [{ tag: 'cat' }], tags2: [] },
+            { id: '2', avatar_url: 'https://via.placeholder.com/150', fields: { ['first name']: [{ value: 'Dog' }], ['last name']: [{ value: 'Bobby' }], ['email']: [{ value: 'dog@example.com' }] }, tags: [{ tag: 'dog' }], tags2: [] },
         ];
 
         (api.useGetContactsQuery as Mock).mockImplementation(() => ({
