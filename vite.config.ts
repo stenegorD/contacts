@@ -8,6 +8,7 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
+  const target = mode === "production" ? env.VITE_CORS_ANYWHERE + env.VITE_APP_CONTACTS_URL : env.VITE_APP_CONTACTS_URL
   return {
     base: mode === "production" ? '/contacts' : '/',
     plugins: [react(), svgr()],
@@ -17,10 +18,9 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      cors: false,
       proxy: {
         '/api': {
-          target: env.VITE_APP_CONTACTS_URL,
+          target,
           changeOrigin: true,
           secure: false,
         },
