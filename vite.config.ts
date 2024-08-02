@@ -8,7 +8,7 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
-    base: '/',
+    base: '/contacts',
     plugins: [react(), svgr()],
     css: {
       postcss: {
@@ -32,12 +32,6 @@ export default defineConfig(({ mode }) => {
       coverage: {
         reporter: ['text', 'json', 'html'],
         exclude: ['node_modules', '**/test/**'],
-      },
-    },
-    build: {
-      manifest: true,
-      rollupOptions: {
-        input: './src/main.tsx',
       },
     },
   }
