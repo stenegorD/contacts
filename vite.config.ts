@@ -34,5 +34,11 @@ export default defineConfig(({ mode }) => {
         exclude: ['node_modules', '**/test/**'],
       },
     },
+    build: {
+      manifest: true,
+      rollupOptions: {
+        input: './src/main.tsx',
+      },
+    },
   }
 })
