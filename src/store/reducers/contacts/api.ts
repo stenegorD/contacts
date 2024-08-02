@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = import.meta.env.VITE_APP_CONTACTS_URL_WITH_CORS;
+const baseUrl = import.meta.env.VITE_APP_CONTACTS_URL;
 const token = import.meta.env.VITE_TOKEN;
 
 export const contactsApi = createApi({
     reducerPath: 'contactsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.DEV ? "/" : baseUrl,
+        baseUrl: import.meta.env.DEV ? "/" : `https://api.allorigins.win/get?url=${encodeURIComponent(baseUrl)}`,
         prepareHeaders: (headers) => {
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
