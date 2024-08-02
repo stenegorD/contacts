@@ -1,13 +1,22 @@
-// // Card.test.tsx
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, Mock, vi } from 'vitest';
 
 import { MemoryRouter } from 'react-router-dom';
 import { Card } from '.';
 import { store } from '../../../../store';
 import * as api from '../../../../store/reducers/contacts/api';
 
+const useNavigateMock: Mock = vi.fn();
+
+vi.mock(`react-router`, async (): Promise<unknown> => {
+    const actual: Record<string, unknown> = await vi.importActual(`react-router`);
+
+    return {
+        ...actual,
+        useNavigate: (): Mock => useNavigateMock,
+    };
+});
 
 vi.mock('../../../../store/reducers/contacts/api', async (importOriginal) => {
     const actual = await importOriginal() as typeof api;
@@ -31,7 +40,7 @@ describe('Card', () => {
     };
 
     it('should render contact information correctly', () => {
-        (api.useDeleteContactMutation as jest.Mock).mockImplementation(() => [vi.fn(), { isLoading: false }]);
+        (api.useDeleteContactMutation as Mock).mockImplementation(() => [vi.fn(), { isLoading: false }]);
         render(
             <Provider store={store}>
                 <MemoryRouter>
@@ -48,7 +57,7 @@ describe('Card', () => {
 
     it('should call deleteContact on delete button click', () => {
         const deleteContact = vi.fn();
-        (api.useDeleteContactMutation as jest.Mock).mockImplementation(() => [deleteContact, { isLoading: false }]);
+        (api.useDeleteContactMutation as Mock).mockImplementation(() => [deleteContact, { isLoading: false }]);
 
         render(
             <Provider store={store}>
@@ -63,7 +72,7 @@ describe('Card', () => {
     });
 
     it('should disable delete button when isLoading is true', () => {
-        (api.useDeleteContactMutation as jest.Mock).mockImplementation(() => [vi.fn(), { isLoading: true }]);
+        (api.useDeleteContactMutation as Mock).mockImplementation(() => [vi.fn(), { isLoading: true }]);
 
         render(
             <Provider store={store}>
@@ -75,5 +84,21 @@ describe('Card', () => {
 
         expect(screen.getByRole('button')).toBeDisabled();
     });
+
+    it('should navigate to contact page on click', async () => {
+        render(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <Card contact={mockContact} />
+                </MemoryRouter>
+            </Provider>
+
+        );
+
+        fireEvent.click(screen.getByTestId(mockContact.id));
+
+        await waitFor(() => expect(useNavigateMock).toBeCalledWith('/contact/1'));
+        await waitFor(() => expect(useNavigateMock).not.toBeCalledWith('/contact/2'));
+    })
 
 });

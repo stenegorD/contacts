@@ -1,5 +1,5 @@
 import { useGetContactsQuery } from "../../../../store/reducers/contacts/api";
-import { Card } from "../Card";
+import { Card, IContact } from "../Card";
 
 
 export function List() {
@@ -11,7 +11,7 @@ export function List() {
 
     return (
         <div className="flex flex-col gap-4 w-full md:w-contact-list">
-            {contacts && contacts.map((contact: any) => <Card key={contact.id} contact={contact} />)}
+            {contacts && contacts.map((contact: IContact) => <Card key={contact.id} contact={contact} />)}
         </div>
     )
 }

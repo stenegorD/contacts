@@ -4,8 +4,18 @@ import { SvgRemove } from "../../../../assets/svg";
 import { useDeleteContactMutation } from "../../../../store/reducers/contacts/api";
 import { TagsList } from "../../../TagsList";
 
+export interface IContact {
+    id: string;
+    avatar_url: string;
+    fields: {
+      [key: string]: any;
+    };
+    tags: { tag: string }[];
+    tags2: string[];
+  }
+
 type CardProps = {
-    contact: any
+    contact: IContact
 }
 
 export function Card({ contact }: CardProps) {
@@ -24,7 +34,7 @@ export function Card({ contact }: CardProps) {
     }
 
     return (
-        <div className="bg-custom-gray-bg rounded p-4 cursor-pointer" onClick={navigateToContactPage}>
+        <div data-testid={contact.id} className="bg-custom-gray-bg rounded p-4 cursor-pointer" onClick={navigateToContactPage}>
             <div className="flex gap-2">
                 <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
                     <img className="w-full h-full object-cover object-center" src={avatar_url} />

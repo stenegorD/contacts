@@ -90,7 +90,7 @@ exports[`Home > should render Home component correctly 1`] = `
       <h2
         class="text-xl"
       >
-        ContactList
+        Contact List
       </h2>
       <div
         class="w-full md:w-contact-list"

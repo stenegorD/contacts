@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, Mock, vi } from 'vitest';
 import { List } from '.';
 import { store } from '../../../../store';
 import * as api from '../../../../store/reducers/contacts/api';
@@ -17,7 +17,7 @@ vi.mock('../../../../store/reducers/contacts/api', async (importOriginal) => {
 
 describe('List', () => {
     it('should render loading state initially', () => {
-        (api.useGetContactsQuery as jest.Mock).mockImplementation(() => ({
+        (api.useGetContactsQuery as Mock).mockImplementation(() => ({
             data: undefined,
             isLoading: true,
         }));
@@ -39,7 +39,7 @@ describe('List', () => {
             { id: '2', avatar_url: 'https://via.placeholder.com/150', fields: { ['first name']: [{ value: 'Dog' }], ['last name']: [{ value: 'Bobby' }], ['email']: [{ value: 'dog@example.com' }] }, tags: [{ tag: 'dog' }] },
         ];
 
-        (api.useGetContactsQuery as jest.Mock).mockImplementation(() => ({
+        (api.useGetContactsQuery as Mock).mockImplementation(() => ({
             data: contacts,
             isLoading: false,
         }));
@@ -61,7 +61,7 @@ describe('List', () => {
     });
 
     it('should render empty state when no contacts are available', async () => {
-        (api.useGetContactsQuery as jest.Mock).mockImplementation(() => ({
+        (api.useGetContactsQuery as Mock).mockImplementation(() => ({
             data: [],
             isLoading: false,
         }));
