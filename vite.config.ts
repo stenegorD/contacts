@@ -8,7 +8,7 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
-    base: '/contacts',
+    base: mode === "production" ? '/contacts' : '/',
     plugins: [react(), svgr()],
     css: {
       postcss: {

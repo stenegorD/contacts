@@ -1,13 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-
 const baseUrl = import.meta.env.VITE_APP_CONTACTS_URL;
 const token = import.meta.env.VITE_TOKEN;
 
 export const contactsApi = createApi({
     reducerPath: 'contactsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: baseUrl,
+        baseUrl: import.meta.env.DEV ? "/" : baseUrl,
         prepareHeaders: (headers) => {
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
@@ -19,7 +18,7 @@ export const contactsApi = createApi({
     endpoints: (builder) => ({
         getContacts: builder.query({
             query: () => ({
-                url: `/contacts`,
+                url: `/api/v1/contacts`,
                 method: 'GET',
                 params: { sort: 'created:desc' },
             }),
@@ -29,7 +28,7 @@ export const contactsApi = createApi({
         }),
         getContact: builder.query({
             query: (id) => ({
-                url: `/contact/${id}`,
+                url: `/api/v1/contact/${id}`,
                 method: 'GET',
             }),
 
@@ -38,7 +37,7 @@ export const contactsApi = createApi({
         }),
         createContact: builder.mutation({
             query: (data) => ({
-                url: `/contact`,
+                url: `/api/v1/contact`,
                 method: 'POST',
                 body: data
             }),
@@ -46,14 +45,14 @@ export const contactsApi = createApi({
         }),
         deleteContact: builder.mutation({
             query: (contactId) => ({
-                url: `/contact/${contactId}`,
+                url: `/api/v1/contact/${contactId}`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['Contacts']
         }),
         addTags: builder.mutation({
             query: (data) => ({
-                url: `/contacts/${data.id}/tags`,
+                url: `/api/v1/contacts/${data.id}/tags`,
                 method: 'PUT',
                 body: data.tags
             }),

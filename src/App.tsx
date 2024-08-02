@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Contact } from "./pages/Contact";
 import { Home } from "./pages/Home";
 
+const basename = import.meta.env.DEV ? "/" : "/contacts";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -11,7 +13,7 @@ export const router = createBrowserRouter([
     element: <Contact />,
     path: "contact/:contactId"
   }
-], { basename: "/contacts" });
+], { basename });
 
 
 export function App() {
