@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
     element: <Contact />,
     path: "contact/:contactId"
   }
-]);
+], { basename: "/contacts" });
 
 
 export function App() {
