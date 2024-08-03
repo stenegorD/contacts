@@ -6,7 +6,7 @@ const token = import.meta.env.VITE_TOKEN;
 export const contactsApi = createApi({
     reducerPath: 'contactsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.DEV ? "/" : `https://api.allorigins.win/raw?url=${encodeURIComponent(baseUrl)}`,
+        baseUrl: import.meta.env.DEV ? "/" : `https://thingproxy.freeboard.io/fetch/${baseUrl}`,
         prepareHeaders: (headers) => {
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
