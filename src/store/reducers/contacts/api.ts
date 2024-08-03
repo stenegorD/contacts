@@ -6,7 +6,7 @@ const token = import.meta.env.VITE_TOKEN;
 export const contactsApi = createApi({
     reducerPath: 'contactsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.DEV ? "/" : `https://cors-anywhere.herokuapp.com/${baseUrl}`,
+        baseUrl: import.meta.env.DEV ? "/" : `https://api.allorigins.win/get?url=${baseUrl}`,
         mode: "cors",
         prepareHeaders: (headers) => {
             if (token) {
