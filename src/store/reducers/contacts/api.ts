@@ -6,7 +6,7 @@ const token = import.meta.env.VITE_TOKEN;
 export const contactsApi = createApi({
     reducerPath: 'contactsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.DEV ? "/" : `https://thingproxy.freeboard.io/fetch/${baseUrl}`,
+        baseUrl: import.meta.env.DEV ? "/" : `https://cors-anywhere.herokuapp.com/${baseUrl}`,
         mode: "cors",
         prepareHeaders: (headers) => {
             if (token) {
