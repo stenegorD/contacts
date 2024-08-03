@@ -7,6 +7,7 @@ export const contactsApi = createApi({
     reducerPath: 'contactsApi',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.DEV ? "/" : `https://thingproxy.freeboard.io/fetch/${baseUrl}`,
+        mode: "cors",
         prepareHeaders: (headers) => {
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
