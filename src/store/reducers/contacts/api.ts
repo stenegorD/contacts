@@ -6,7 +6,7 @@ const token = import.meta.env.VITE_TOKEN;
 export const contactsApi = createApi({
     reducerPath: 'contactsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.DEV ? "/" : `https://api.allorigins.win/get?`,
+        baseUrl: import.meta.env.DEV ? "/" : `https://cors-anywhere.herokuapp.com/${baseUrl}`,
         mode: "cors",
         prepareHeaders: (headers) => {
             if (token) {
@@ -14,27 +14,14 @@ export const contactsApi = createApi({
             }
             return headers;
         },
-        fetchFn: async (input, init) => {
-            const response = await fetch(input, init);
-            if (response.ok && import.meta.env.DEV === false) {
-                const data = await response.json();
-                const decodedData = JSON.parse(data.contents);
-                return new Response(JSON.stringify(decodedData), {
-                    headers: response.headers,
-                    status: response.status,
-                    statusText: response.statusText,
-                });
-            }
-            return response;
-        },
     }),
     tagTypes: ["Contacts", "Contact"],
     endpoints: (builder) => ({
         getContacts: builder.query({
             query: () => ({
-                url: import.meta.env.DEV ? `/api/v1/contacts` : `${baseUrl}/api/v1/contacts?sort=created:desc`,
+                url: `/api/v1/contacts`,
                 method: 'GET',
-                params: import.meta.env.DEV ? { sort: 'created:desc' } : {},
+                params: { sort: 'created:desc' },
             }),
 
             transformResponse: (data: any) => data.resources,
